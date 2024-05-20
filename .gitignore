@@ -1,0 +1,8 @@
+# IDEA
+.idea
+
+# Configs
+*.env
+
+# Modules
+*/**/node_modules
