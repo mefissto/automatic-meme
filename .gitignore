@@ -1,8 +1,10 @@
 # IDEA
 .idea
+*/**/.vscode
 
 # Configs
 *.env
 
 # Modules
 */**/node_modules
+server/ormconfig.json
