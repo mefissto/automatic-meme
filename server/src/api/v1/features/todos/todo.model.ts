@@ -1,10 +1,10 @@
 export class TodoDTO {
   id: number;
   label: string;
+  completed: boolean;
 
-  constructor(id: number, label: string) {
-    this.id = id;
-    this.label = label;
+  constructor(dto: Partial<TodoDTO>) {
+    Object.assign(this, dto);
   }
 }
 

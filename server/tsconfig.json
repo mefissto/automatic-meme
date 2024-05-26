@@ -11,6 +11,11 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@database/*": ["src/database/*"],
+      "@entities/*": ["src/entities/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
