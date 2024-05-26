@@ -2,31 +2,39 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { ConfigService } from '@services/config.service';
+import { Todo } from '@models/todo.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  private apiUrl = 'http://localhost:3000/api/todos';
+  private readonly apiUrl: string;
 
-  constructor(private http: HttpClient) {}
-
-  getTodos(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService,
+  ) {
+    this.apiUrl = `${configService.getApiUrl()}/todos`;
   }
 
-  getTodoById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.apiUrl);
   }
 
-  createTodo(todo: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, todo);
+  getTodoById(id: number): Observable<Todo> {
+    return this.http.get<Todo>(`${this.apiUrl}/${id}`);
   }
 
-  updateTodo(id: number, todo: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, todo);
+  createTodo(todo: Todo): Observable<Todo> {
+    return this.http.post<Todo>(this.apiUrl, todo);
   }
 
-  deleteTodo(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  updateTodo(id: number, todo: Todo): Observable<Todo> {
+    return this.http.patch<Todo>(`${this.apiUrl}/${id}`, todo);
+  }
+
+  deleteTodo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
