@@ -1,0 +1,25 @@
+<div class="todo-app">
+  <h1 class="title">Todo List</h1>
+
+  <form (submit)="createTodo()" class="todo-form">
+    <input [(ngModel)]="newTodo.label" name="todo" placeholder="Enter new todo" required class="todo-input">
+    <button type="submit" class="todo-submit-btn">Add</button>
+  </form>
+
+  <div class="todo-list">
+    <div *ngFor="let todo of todos" class="todo-item">
+      <div class="todo-title">
+        <p>{{ todo.label }}</p>
+      </div>
+
+      <div class="todo-actions">
+        <form (submit)="updateTodo(todo)" class="todo-update-form">
+          <input [(ngModel)]="todo.label" name="title" class="todo-update-input">
+          <button type="submit" class="update-btn">Update</button>
+        </form>
+
+        <button (click)="deleteTodo(todo.id)" class="delete-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
